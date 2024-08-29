@@ -1,0 +1,242 @@
+:root {
+  --backgroundColor: #ADD8E6;
+  --backgroundColor-dark: darken($backgroundColor, 40%);
+  --backgroundColor-light: lighten($backgroundColor, 20%);
+  --linkColor: #357b70;
+  --visitedColor: #808;
+  --activeColor: #489C79;
+  --buttonColor: rgb(255, 255, 255);
+  --buttonbackColor: #E0B354;
+  --sunriseColor: #EDC655;
+  --middayColor: #FCFFAD;
+  --sunsetColor: #F76414;
+  --gridColor: #3D8869;
+  --gridColor-Lighten: lighten($gridColor, 15%);
+  --gridbackColor: rgb(180, 178, 178);
+  --autofontSize: auto;
+  --textCenter: center;
+  --textRight: right;
+  --displayInBlock: inline-block;
+  --displayGrid: grid;
+  --displayFlex: flex;
+  --flexright: right;
+  --normalfontStyle: normal;
+  --fontsizebody: 16px;
+  --leftfloat: left;
+  --footerallclear: both;
+
+}
+
+body {
+  background-color: var(--backgroundColor);
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: var(--normalfontStyle);
+  font-size: var(--fontsizebody);
+}
+
+.header__title {
+  margin: 0 auto;
+}
+
+.profile {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.profile__portrait {
+  float: var(--leftfloat);
+  width: 250px;
+  margin-right: 40px;
+  border-radius: 50%;
+}
+
+.page-footer {
+  clear: var(--footerallclear);
+  display: var(--displayFlex);
+  flex-direction: column;
+  text-align: center;
+}
+
+.page-header {
+  display: var(--displayFlex);
+  width: 100%;
+  padding: 20px;
+}
+
+.page-header__item {
+  flex-direction: 0 1 200px;
+}
+
+.page-header:last-child {
+  flex: var(--flexright);
+  text-align: var(--textRight);
+}
+
+.navigation-list {
+  list-style-type: none;
+}
+
+.navigation-list li {
+  display: var(--displayInBlock);
+  margin-left: 15px;
+}
+
+.grid {
+  display: grid;
+  /*Columns=width, and Rows=height*/
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 300px 300px;
+  grid-gap: 20px;
+}
+
+/*Start grid fallback*/
+.grid-item {
+  display: var(--displayInBlock);
+}
+
+/*end grid fallback*/
+@supports (display: grid) {
+  .grid {
+    display: var(--displayGrid);
+    /*grid-template-columns: 300px 300px 300px; fractions are better than pixels - they are responsive*/
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    margin: 0;
+  }
+}
+.grid-item {
+  background-color: var(--gridbackColor);
+  min-height: auto;
+  margin: 0;
+}
+
+/*.grid-item:last-child{
+ grid-column: 3 / 3;
+ grid-row: 1 / 3;
+}*/
+header {
+  padding: 10px;
+  margin: 10px;
+}
+
+div {
+  padding: 10px;
+  margin: 10px; /*Adds a 10px outer spacing to all sides*/
+  /*border: 1px solid black; /* Attributes describe: thickness, type, color*/
+}
+
+a {
+  color: var(--linkColor);
+}
+
+a:visited {
+  /*visited link*/
+  color: var(--visitedColor);
+}
+
+a:hover, a:focus {
+  /*No underlining when hovering over a link*/
+  text-decoration: none;
+}
+
+a:active {
+  /* selected link*/
+  color: var(--activeColor);
+}
+
+button .button {
+  /* overwrites browser defaults and resets the border */
+  border: none;
+  /* takes the font from the outer container */
+  font-family: inherit;
+  /* styles the background color, font color, and text decoration (underline, etc.) of the button */
+  background-color: var(--linkColor);
+  color: var(--buttonColor);
+  text-decoration: none;
+  /*adds spacing to the button (this will be discussed more in-depth later) */
+  padding: 10px;
+  border-radius: 3px;
+  /* gives the button a bottom border with a width of 2px, a type of solid, and a color in RGBA format */
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+  transition: opacity 0.2s;
+}
+
+.button:hover, .button:focus {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.button__secondary {
+  background-color: var(--buttonbackColor);
+  color: var(--buttonColor);
+}
+
+.about_me_text {
+  margin: auto;
+  text-align: center;
+}
+.berlin-illustration{
+text-align: center;
+}
+@media all and (max-width: 500px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media all and (min-width: 500px) and (max-width: 750px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media all and (max-width: 750px) {
+  .grid {
+    grid-gap: 10px;
+  }
+  .grid__item:last-child {
+    grid-column: auto/auto;
+    grid-row: auto/auto;
+  }
+  h1 {
+    font-size: 22px;
+  }
+}
+@keyframes color-change {
+  0% {
+    fill: var(--sunriseColor);
+  }
+  50% {
+    fill: var(--middayColor);
+  }
+  100% {
+    fill: var(--sunsetColor);
+  }
+}
+.sun {
+  animation: 4s color-change infinite alternate linear;
+}
+
+@keyframes cloud-move {
+  from {
+    transform: translate(0, 50px);
+  }
+  to {
+    transform: translate(200px, 50px);
+  }
+}
+.cloud-front {
+  animation: 27s cloud-move infinite alternate linear;
+}
+
+@keyframes cloud-move-reverse {
+  from {
+    transform: translate(446px, 48px);
+  }
+  to {
+    transform: translate(100px, 48px);
+  }
+}
+.cloud-back {
+  animation: 30s cloud-move-reverse infinite alternate linear;
+}
+
