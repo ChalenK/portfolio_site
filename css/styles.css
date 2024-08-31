@@ -24,6 +24,7 @@
   --fontsizebody: 16px;
   --leftfloat: left;
   --footerallclear: both;
+  --animationLinearMovement: infinite alternate linear;
 
 }
 
@@ -213,7 +214,7 @@ text-align: center;
   }
 }
 .sun {
-  animation: 4s color-change infinite alternate linear;
+  animation: 4s color-change var(--animationLinearMovement);
 }
 
 @keyframes cloud-move {
@@ -225,7 +226,7 @@ text-align: center;
   }
 }
 .cloud-front {
-  animation: 27s cloud-move infinite alternate linear;
+  animation: 27s cloud-move var(--animationLinearMovement);
 }
 
 @keyframes cloud-move-reverse {
@@ -237,6 +238,6 @@ text-align: center;
   }
 }
 .cloud-back {
-  animation: 30s cloud-move-reverse infinite alternate linear;
+  animation: 30s cloud-move-reverse var(--animationLinearMovement);
 }
 
